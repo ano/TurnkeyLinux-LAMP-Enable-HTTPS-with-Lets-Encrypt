@@ -1,7 +1,7 @@
 # TurnkeyLinux-LAMP-Enable-HTTPS-with-Lets-Encrypt
 Install and Enable HTTPS with Lets Encrypt on TurnkeyLinux LAMP 
 
-#update pip
+###update pip
 
 ```
   apt-get remove python-pip
@@ -10,21 +10,22 @@ Install and Enable HTTPS with Lets Encrypt on TurnkeyLinux LAMP
   pip install python2-pythondialog
 ```
 
-#add backports to Jessie
+###add backports to Jessie
 ```
   echo 'deb http://http.debian.net/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
   apt-get update
 ```
 
 
-#install lets encrypt
+###install lets encrypt
 ```
   apt-get install python-certbot-apache -t jessie-backports
   certbot --apache
 ```
 
-#configure your apache virtualhosts file
-nano /etc/apache2/sites-available/default-ssl.conf
+###configure your apache virtualhosts file
+> nano /etc/apache2/sites-available/default-ssl.conf
+
 ```
 <VirtualHost *:443>
         SSLEngine on
@@ -35,7 +36,18 @@ nano /etc/apache2/sites-available/default-ssl.conf
         DocumentRoot /var/www/
 </VirtualHost>
 ```
-#restart apache
+###(Optional) Force Apache to always use https
+```
+<VirtualHost *:80>
+        ServerAdmin licensing@gmail.com
+        DocumentRoot /var/www/
+        
+        RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+</VirtualHost>
+```
+###restart apache
 ```
   /etc/init.d/apache2 restart
 ```
