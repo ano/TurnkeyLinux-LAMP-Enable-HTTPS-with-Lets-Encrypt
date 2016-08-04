@@ -23,16 +23,17 @@ Install and Enable HTTPS with Lets Encrypt on TurnkeyLinux LAMP
   certbot --apache
 ```
 
-#configure your apache VirtualHost
+#configure your apache virtualhosts file
+nano /etc/apache2/sites-available/default-ssl.conf
 ```
-<VirtualHost 192.168.0.1:443>
-  DocumentRoot /var/www/
-  ServerName $domain
-  SSLEngine on
-  SSLCertificateFile /etc/letsencrypt/live/$domain/cert.pem
-  SSLCertificateKeyFile /etc/letsencrypt/live/$domain/privkey.pem 
-  SSLCertificateChainFile /etc/letsencrypt/live/$domain/fullchain.pem
-</VirtualHost> 
+<VirtualHost *:443>
+        SSLEngine on
+        SSLCertificateFile /etc/letsencrypt/live/licensing.tklapp.com/cert.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/licensing.tklapp.com/privkey.pem 
+        SSLCertificateChainFile /etc/letsencrypt/live/licensing.tklapp.com/fullchain.pem
+        ServerAdmin licensing@gmail.com
+        DocumentRoot /var/www/
+</VirtualHost>
 ```
 #restart apache
 ```
