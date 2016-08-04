@@ -11,8 +11,6 @@ TurnkeyLinux LAMP enable HTTPS with Lets Encrypt
   pip install python2-pythondialog
 ```
 
-
-
 #add backports to Jessie
 ```
   echo 'deb http://http.debian.net/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
@@ -24,4 +22,19 @@ TurnkeyLinux LAMP enable HTTPS with Lets Encrypt
 ```
   apt-get install python-certbot-apache -t jessie-backports
   certbot --apache
+```
+#restart apache
+```
+  /etc/init.d/apache2 restart
+```
+#configure your apache VirtualHost
+```
+<VirtualHost 192.168.0.1:443>
+  DocumentRoot /var/www/
+  ServerName $domain
+  SSLEngine on
+  SSLCertificateFile /etc/letsencrypt/live/$domain/cert.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/$domain/privkey.pem 
+  SSLCertificateChainFile /etc/letsencrypt/live/$domain/fullchain.pem
+</VirtualHost> 
 ```
