@@ -23,10 +23,7 @@ TurnkeyLinux LAMP enable HTTPS with Lets Encrypt
   apt-get install python-certbot-apache -t jessie-backports
   certbot --apache
 ```
-#restart apache
-```
-  /etc/init.d/apache2 restart
-```
+
 #configure your apache VirtualHost
 ```
 <VirtualHost 192.168.0.1:443>
@@ -37,4 +34,8 @@ TurnkeyLinux LAMP enable HTTPS with Lets Encrypt
   SSLCertificateKeyFile /etc/letsencrypt/live/$domain/privkey.pem 
   SSLCertificateChainFile /etc/letsencrypt/live/$domain/fullchain.pem
 </VirtualHost> 
+```
+#restart apache
+```
+  /etc/init.d/apache2 restart
 ```
