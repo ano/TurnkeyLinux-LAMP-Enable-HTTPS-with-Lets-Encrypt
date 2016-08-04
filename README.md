@@ -1,7 +1,6 @@
 # TurnkeyLinux-LAMP-Enable-HTTPS-with-Lets-Encrypt
-TurnkeyLinux LAMP enable HTTPS with Lets Encrypt
+Install and Enable HTTPS with Lets Encrypt on TurnkeyLinux LAMP 
 
-#install lets encrypt (https)
 #update pip
 
 ```
