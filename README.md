@@ -51,3 +51,12 @@ Install and Enable HTTPS with Lets Encrypt on TurnkeyLinux LAMP
 ```
   /etc/init.d/apache2 restart
 ```
+###fix confconsole
+TurnkeyLinux's frontend confconsole depends on python-pythondialog and will be broken after installing python2-pythondialog.
+A dirty workaround is to download "python-dialog 2.7" and place its "dialog.py" into "/usr/lib/confconsole".
+
+Alternatively backup the old "dialog.py" before upgrading pip:
+> cp /usr/share/pyshared/dialog.py /usr/lib/confconsole/dialog.py
+
+"python-dialog 2.7" can be downloaded here: 
+https://sourceforge.net/projects/pythondialog/files/pythondialog/2.7/pythondialog-2.7.tar.bz2
